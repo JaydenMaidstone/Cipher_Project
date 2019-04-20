@@ -8,7 +8,10 @@
 //   char x;
 //   input = fopen("adb.txt", "r");
 //   while ((x = getc(input)) != EOF) {
-//      x = (x - 66 + key)%26 + 65;
+//       if (x != 32) {
+//      x = (x - 65 + key)%26 + 65;
+//  }
+//
 //        printf("%c", x);
 //   }
 //   
