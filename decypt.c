@@ -8,7 +8,10 @@ int main(void)
    char x;
    input = fopen("decrypt.txt", "r");
    while ((x = getc(input)) != EOF) {
-      x = (x - 97 - key)%26 + 97;
+      x = x - key;
+      if (x < 65) {
+          x = x + 26;
+      }
         printf("%c", x);
    }
    
