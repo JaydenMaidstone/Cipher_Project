@@ -20,8 +20,8 @@ int main(void)
         break;
         case 3: encryptS();
         break;
-//        case 4: decryptS();
-//        break;
+        case 4: decryptS();
+        break;
         case 5: decryptRA();
         break;
 //        case 6: decryptSA();
@@ -37,7 +37,7 @@ void encryptR() {
     int key = 5;
    FILE *input;
    char x;
-   input = fopen("encrypt_input.txt", "r");
+   input = fopen("input.txt", "r");
    while ((x = getc(input)) != EOF) {
        if (x != 32) {
       x = (x - 65 + key)%26 + 65;
@@ -58,7 +58,7 @@ void decryptR() {
     int key = 5;
    FILE *input;
    char x;
-   input = fopen("decrypt_input.txt", "r");
+   input = fopen("input.txt", "r");
    while ((x = getc(input)) != EOF) {
        
       if( x != 32) {
@@ -81,7 +81,7 @@ void decryptR() {
     FILE *input;
     char x;
     while ( key < 26) {
-    input = fopen("decrypt_input.txt", "r");
+    input = fopen("input.txt", "r");
     while ((x = getc(input)) != EOF) {
        
         if( x != 32) {
@@ -110,7 +110,7 @@ void encryptS() {
    FILE *input;
    char x;
    char k;
-   input = fopen("encrypt_input.txt", "r");
+   input = fopen("input.txt", "r");
    while ((x = getc(input)) != EOF) {
        if (x >= 65 && x <= 90) {
        while (count != (x - 64)) {
@@ -118,6 +118,32 @@ void encryptS() {
           count += 1;
       }
     x = k;
+        }
+    fprintf( ofile,"%c", x);
+    count = 0;
+    fseek(key, 0, SEEK_SET);  
+   }
+   
+   fclose(ofile);
+}
+
+
+void decryptS()
+{
+    FILE *ofile;
+    FILE *key;
+    int count = 0;
+    ofile = fopen("output.txt", "w");
+    key = fopen("key.txt", "r");
+   FILE *input;
+   char x;
+   input = fopen("input.txt", "r");
+   while ((x = getc(input)) != EOF) {
+       if (x >= 65 && x <= 90) {
+       while (getc(key) != x) {
+          count += 1;
+      }
+    x = 65 + count;
         }
     fprintf( ofile,"%c", x);
     count = 0;

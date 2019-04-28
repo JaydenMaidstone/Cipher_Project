@@ -10,15 +10,13 @@
 //    key = fopen("key.txt", "r");
 //   FILE *input;
 //   char x;
-//   char k;
 //   input = fopen("input.txt", "r");
 //   while ((x = getc(input)) != EOF) {
 //       if (x >= 65 && x <= 90) {
-//       while (count != (x - 64)) {
-//          k = getc(key);
+//       while (getc(key) != x) {
 //          count += 1;
 //      }
-//    x = k;
+//    x = 65 + count;
 //        }
 //    fprintf( ofile,"%c", x);
 //    count = 0;
